@@ -7,7 +7,8 @@
     <script>
       var config = {
         apiKey: "AIzaSyDBiBbsc98dGlLonXS0BaaFWrkCZtot70g",
-        authDomain: "iona-1.firebaseapp.com",
+        // authDomain: "iona-1.firebaseapp.com",
+        authDomain: "iona.thaumagen.io",
         projectId: "iona-1",
         storageBucket: "iona-1.appspot.com",
         messagingSenderId: "871349271977",
@@ -26,6 +27,8 @@
         }
       });
       var provider = new firebase.auth.GoogleAuthProvider();
+
+      // firebase.auth().tenantId = "thaumagen-h92cb";
       provider.addScope("openid");
       provider.addScope("https://www.googleapis.com/auth/userinfo.email");
       firebase.auth().signInWithPopup(provider).catch(function(error) {
