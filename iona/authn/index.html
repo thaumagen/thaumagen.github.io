@@ -3,18 +3,6 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Iona Authentication</title>
-  </head>
-  <body>
-    <div>Identity Platform Quickstart</div>
-    <div id="message">Loading...</div>
-
-    <!--
-    <div id="tenant-selection-buttons">
-      <button id="tenant-thaumagen-select-button"
-        data-val="thaumagen-h92cb">Thaumagen</button>
-      <button id="tenant-public-select-button" data-val="public-69cvf">Public</button>
-    </div>
-    -->
     <script src="https://www.gstatic.com/firebasejs/8.0/firebase.js"></script>
     <script>
       var config = {
@@ -37,9 +25,25 @@
           document.getElementById("message").innerHTML = "No user signed in.";
         }
       });
-      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope("openid");
+      provider.addScope("https://www.googleapis.com/auth/userinfo.email");
+      firebase.auth().signInWithPopup(provider).catch(function(error) {
         document.getElementById("message").innerHTML = error.message;
       });
     </script>
+
+  </head>
+  <body>
+    <div>Identity Platform Quickstart</div>
+    <div id="message">Loading...</div>
+
+    <!--
+    <div id="tenant-selection-buttons">
+      <button id="tenant-thaumagen-select-button"
+        data-val="thaumagen-h92cb">Thaumagen</button>
+      <button id="tenant-public-select-button" data-val="public-69cvf">Public</button>
+    </div>
+    -->
   </body>
 </html>
