@@ -7,8 +7,8 @@
     <script>
       var config = {
         apiKey: "AIzaSyDBiBbsc98dGlLonXS0BaaFWrkCZtot70g",
-        // authDomain: "iona-1.firebaseapp.com",
-        authDomain: "iona.thaumagen.io",
+        authDomain: "iona-1.firebaseapp.com",
+        // authDomain: "iona.thaumagen.io",
         projectId: "iona-1",
         storageBucket: "iona-1.appspot.com",
         messagingSenderId: "871349271977",
@@ -22,8 +22,34 @@
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           document.getElementById("message").innerHTML = "Welcome, " + user.email;
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var uid = user.uid;
+          var phoneNumber = user.phoneNumber;
+          var providerData = user.providerData;
+          user.getIdToken().then(function(accessToken) {
+            document.getElementById('sign-in-status').textContent = 'Signed in';
+            document.getElementById('sign-in').textContent = 'Sign out';
+            document.getElementById('account-details').textContent = JSON.stringify({
+              displayName: displayName,
+              email: email,
+              emailVerified: emailVerified,
+              phoneNumber: phoneNumber,
+              photoURL: photoURL,
+              uid: uid,
+              accessToken: accessToken,
+              providerData: providerData
+            }, null, '  ');
+          });
         } else {
           document.getElementById("message").innerHTML = "No user signed in.";
+          // User is signed out.
+          document.getElementById('sign-in-status').textContent = 'Signed out';
+          document.getElementById('sign-in').textContent = 'Sign in';
+          document.getElementById('account-details').textContent = 'null';
         }
       });
       var provider = new firebase.auth.GoogleAuthProvider();
@@ -40,6 +66,10 @@
   <body>
     <div>Identity Platform Quickstart</div>
     <div id="message">Loading...</div>
+    <div id="firebaseui-auth-container"></div>
+    <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+    <pre id="account-details"></pre>
 
     <!--
     <div id="tenant-selection-buttons">
