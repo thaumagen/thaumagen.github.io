@@ -1,1 +1,34 @@
-Hello Thaumagen
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Thaumagen Services</title>
+  </head>
+  <body>
+  <script>
+    function credentials_response(result) {
+      var resultString = JSON.stringify(result);
+      console.log(resultString);
+      document.getElementById("message").textContent = resultString;
+    }
+  </script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <div id="message">Loading...</div>
+  <div id="g_id_onload"
+       data-client_id="871349271977-ur5ptcdqjkvuhok0pqe1lk52ihhic4ct.apps.googleusercontent.com"
+       data-context="signin"
+       data-ux_mode="popup"
+       data-callback="credentials_response"
+       data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"
+       data-type="standard"
+       data-shape="rectangular"
+       data-theme="outline"
+       data-text="signin_with"
+       data-size="large"
+       data-logo_alignment="left">
+  </div>
+  </body>
+</html>
+
