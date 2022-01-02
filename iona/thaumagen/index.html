@@ -91,16 +91,16 @@
       return JSON.parse(jsonPayload);
   };
 
-      let accessToken = 'xxx';
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       user.getIdToken().then(function(jwt) {
 
         idToken = parseJwt(jwt);
+        var tenant = idToken.firebase ? idToken.firebase.tenant || undefined
 
         document.getElementById('sign-in-status').textContent = `Signed in as
-        ${user.email}[${accessToken.firebase.tenant}]`;
+        ${user.email}[${tenant}]`;
         document.getElementById('account-details').textContent = JSON.stringify({
           displayName: user.displayName,
           email: user.email,
