@@ -97,7 +97,7 @@
       user.getIdToken().then(function(jwt) {
 
         idToken = parseJwt(jwt);
-        var tenant = idToken.firebase ? idToken.firebase.tenant || undefined
+        var tenant = idToken.firebase ? idToken.firebase.tenant : undefined;
 
         document.getElementById('sign-in-status').textContent = `Signed in as
         ${user.email}[${tenant}]`;
