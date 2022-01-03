@@ -110,7 +110,8 @@
           uid: user.uid,
           idToken: idToken,
           providerData: user.providerData,
-          tenant: idToken.firebase.tenant
+          tenant: idToken.firebase.tenant,
+          id_token: jwt,
         }, null, '  ');
       });
     } else {
