@@ -126,13 +126,19 @@
 
       console.log(`idToken: ${idToken}`)
 
+      if (idToken == null) {
+        console.log("idToken not available");
+        return;
+      }
+
       const data={jsonrpc:"2.0", method:"eth_blockNumber", params: [], id: 0}
       $.ajax({
         // url: "/node/ethnode0",
         url: "https://iona.thaumagen.io/node/ethnode0",
         type: "POST",
         headers: {
-          "Authorization": `Bearer ${idToken}`
+          "Authorization": `Bearer ${idToken}`,
+          "Content-Type": "application/json"
         },
         data: data,
         success: function(result) {
