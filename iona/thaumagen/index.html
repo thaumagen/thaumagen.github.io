@@ -139,8 +139,7 @@
           document.getElementById('block-height').textContent = JSON.stringify(result);
         },
         error: function(error) {
-          const error = JSON.stringify(error);
-          document.getElementById('block-height').textContent = `Error: ${error}`;
+          document.getElementById('block-height').textContent = `Error: ${JSON.stringify(error)}`;
         }
       })
     } else {
