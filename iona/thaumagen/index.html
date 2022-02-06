@@ -124,6 +124,8 @@
         }, null, '  ');
       });
 
+      console.log(`idToken: ${idToken}`)
+
       const data={jsonrpc:"2.0", method:"eth_blockNumber", params: [], id: 0}
       $.ajax({
         // url: "/node/ethnode0",
@@ -137,6 +139,7 @@
           document.getElementById('block-height').textContent = JSON.stringify(result);
         },
         error: function(error) {
+          const error = JSON.stringify(error);
           document.getElementById('block-height').textContent = `Error: ${error}`;
         }
       })
